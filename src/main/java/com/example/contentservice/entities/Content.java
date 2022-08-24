@@ -13,7 +13,8 @@ public class Content {
     private String category;
     private String content;
     private String authorID;
-    private String Title;
+    private String title;
+    private String authorEmail;
 
     public long getUserID() {
         return userID;
@@ -56,10 +57,18 @@ public class Content {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        title = title;
+    }
+
+    public String getAuthorEmail() {
+        return authorEmail;
+    }
+
+    public void setAuthorEmail(String authorEmail) {
+        this.authorEmail = authorEmail;
     }
 }

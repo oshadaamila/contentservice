@@ -9,6 +9,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class ContentController {
     @PostMapping
     public Content saveContent(@Validated @RequestBody Content content) {
 
-        kafkaTemplate.send(TOPIC, new ContentAction("Title", "name","email", "timestamp"));
+        kafkaTemplate.send(TOPIC, new ContentAction(content.getTitle(), content.getAuthorName(),content.getAuthorEmail(), new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date())));
         return contentRepository.save(content);
     }
 }
