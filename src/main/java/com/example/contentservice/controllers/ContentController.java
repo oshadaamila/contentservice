@@ -2,8 +2,10 @@ package com.example.contentservice.controllers;
 
 import com.example.contentservice.Repositories.ContentRepository;
 import com.example.contentservice.entities.Content;
+import com.example.contentservice.entities.ContentAction;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,10 @@ import java.util.List;
 @RequestMapping("api/content")
 public class ContentController {
 
+    @Autowired
+    private KafkaTemplate<String, ContentAction> kafkaTemplate;
+
+    private static final String TOPIC = "notificationq";
     @Autowired
     private ContentRepository contentRepository;
 
@@ -24,6 +30,8 @@ public class ContentController {
 
     @PostMapping
     public Content saveContent(@Validated @RequestBody Content content) {
+
+        kafkaTemplate.send(TOPIC, new ContentAction("Title", "name","email", "timestamp"));
         return contentRepository.save(content);
     }
 }

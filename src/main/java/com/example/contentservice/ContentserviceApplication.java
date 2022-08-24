@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ContentserviceApplication {
 
 	public static void main(String[] args) {
+		java.security.Security.setProperty("networkaddress.cache.ttl" , "10");
 		SpringApplication.run(ContentserviceApplication.class, args);
 	}
 
