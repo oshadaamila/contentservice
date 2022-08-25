@@ -8,7 +8,7 @@ public class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userID;
+    private long contentID;
     private String authorName;
     private String category;
     private String content;
@@ -16,12 +16,12 @@ public class Content {
     private String title;
     private String authorEmail;
 
-    public long getUserID() {
-        return userID;
+    public long getContentID() {
+        return contentID;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setContentID(long contentID) {
+        this.contentID = contentID;
     }
 
     public String getAuthorName() {
@@ -61,7 +61,7 @@ public class Content {
     }
 
     public void setTitle(String title) {
-        title = title;
+        this.title = title;
     }
 
     public String getAuthorEmail() {
